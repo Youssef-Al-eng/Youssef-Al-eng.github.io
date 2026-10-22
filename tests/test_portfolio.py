@@ -68,13 +68,20 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn("prefers-reduced-motion:reduce",style)
         self.assertIn('querySelectorAll(".skills-card")',script)
         self.assertIn('classList.add("is-visible")',script)
+
+    def test_skills_has_visible_technology_network_animation(self):
+        self.assertIn('class="skills-network"',self.home)
+        self.assertIn('class="network-flow"',self.home)
+        style=(ROOT/"style.css").read_text(encoding="utf-8").replace(" ","")
+        self.assertIn("@keyframesdata-flow",style)
+        self.assertIn("@media(prefers-reduced-motion:reduce){.network-flow,.network-node{animation:none}}",style)
     def test_all_seven_research_repositories_are_linked(self):
         links=set(self.parsed.links); missing=[repo for repo in EXPECTED_REPOS if f"https://github.com/Youssef-Al-eng/{repo}" not in links]; self.assertEqual(missing,[])
     def test_homepage_metadata_and_favicon_exist(self):
         meta=dict(self.parsed.meta)
         for name in ("description","og:title","og:description","og:url","theme-color"): self.assertTrue(meta.get(name),f"missing {name}")
         self.assertTrue(any("favicon.svg?v=portfolio-v3" in href for href in self.parsed.resources)); self.assertIn('rel="canonical"',self.home)
-        self.assertIn('href="style.css?v=portfolio-v4"',self.home); self.assertIn('src="nav.js?v=portfolio-v4"',self.home)
+        self.assertIn('href="style.css?v=portfolio-v5"',self.home); self.assertIn('src="nav.js?v=portfolio-v4"',self.home)
     def test_published_sources_contain_no_local_absolute_paths(self):
         for path in [*ROOT.glob("*.html"),*ROOT.glob("*.css"),*ROOT.glob("*.js")]: self.assertNotRegex(path.read_text(encoding="utf-8"),r"[A-Z]:\\|/Users/|/home/")
     def test_navigation_and_project_filters_have_accessible_defaults(self):
