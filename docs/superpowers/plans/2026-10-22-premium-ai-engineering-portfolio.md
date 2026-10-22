@@ -50,7 +50,7 @@
 
 **Interfaces:**
 - Consumes: the section and link assertions from `tests/test_portfolio.py`.
-- Produces: stable IDs `home`, `expertise`, `projects`, `deep-dives`, `applied-work`, `interests`, `experience`, `education`, and `contact`; seven research cards with exact repository links; semantic page landmarks.
+- Produces: stable IDs `home`, `skills`, `projects`, `deep-dives`, `applied-work`, `interests`, `experience`, `education`, and `contact`; seven research cards with exact repository links; semantic page landmarks.
 
 - [ ] Replace the academic-style homepage markup with a semantic page containing a skip link, header/navigation, `main`, the nine sections, and footer.
 - [ ] Write the hero as “Applied AI Engineer,” include the full name and verified email, GitHub, and LinkedIn links; omit CV download because no publication-ready CV is available.
@@ -104,7 +104,7 @@
 
 - [ ] Add tests named `test_legacy_routes_point_to_matching_sections` and `test_not_found_page_has_recovery_links`.
 - [ ] Run tests and confirm the legacy route and 404 assertions fail before implementation.
-- [ ] Add lightweight meta-refresh plus visible fallback links on legacy pages: About→`#expertise`, Projects→`#projects`, Research→`#deep-dives`, Experience→`#experience`, Education→`#education`, Contact→`#contact`.
+- [ ] Add lightweight meta-refresh plus visible fallback links on legacy pages: About→`#skills`, Projects→`#projects`, Research→`#deep-dives`, Experience→`#experience`, Education→`#education`, Contact→`#contact`.
 - [ ] Add title, description, canonical, Open Graph title/description/URL, theme color, and local favicon links; add `404.html` with home/projects recovery links.
 - [ ] Run the full unittest suite and verify each legacy route and 404 page through the local server; commit as `feat: preserve legacy routes and add portfolio metadata`.
 
