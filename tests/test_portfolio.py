@@ -28,7 +28,8 @@ class PortfolioTests(unittest.TestCase):
     def test_homepage_metadata_and_favicon_exist(self):
         meta=dict(self.parsed.meta)
         for name in ("description","og:title","og:description","og:url","theme-color"): self.assertTrue(meta.get(name),f"missing {name}")
-        self.assertTrue(any("favicon.svg" in href for href in self.parsed.resources)); self.assertIn('rel="canonical"',self.home)
+        self.assertTrue(any("favicon.svg?v=2768560" in href for href in self.parsed.resources)); self.assertIn('rel="canonical"',self.home)
+        self.assertIn('href="style.css?v=2768560"',self.home); self.assertIn('src="nav.js?v=2768560"',self.home)
     def test_published_sources_contain_no_local_absolute_paths(self):
         for path in [*ROOT.glob("*.html"),*ROOT.glob("*.css"),*ROOT.glob("*.js")]: self.assertNotRegex(path.read_text(encoding="utf-8"),r"[A-Z]:\\|/Users/|/home/")
     def test_navigation_and_project_filters_have_accessible_defaults(self):
