@@ -1,0 +1,99 @@
+/* ------------------------------------------------------------------
+   Personal site of Youssef Alaa — academic-pages inspired style.
+   Edit colors in :root below; layout rules follow.
+------------------------------------------------------------------- */
+:root{
+  --text:#3b4045;
+  --heading:#22262a;
+  --muted:#6e767d;
+  --accent:#2a5d8f;      /* link / active color */
+  --border:#e5e7e9;
+  --bg:#ffffff;
+  --bg-soft:#f7f8f9;
+  --max:1080px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3{color:var(--heading);line-height:1.25;font-weight:700}
+h1{font-size:1.9rem;margin:.2em 0 .4em}
+h2{font-size:1.25rem;margin:2.2rem 0 .8rem;padding-bottom:.35rem;border-bottom:1px solid var(--border)}
+h3{font-size:1.05rem;margin:1.6rem 0 .3rem}
+p{margin:0 0 1rem}
+
+/* Masthead / navigation ------------------------------------------- */
+.masthead{border-bottom:1px solid var(--border);background:#fff;position:sticky;top:0;z-index:20}
+.masthead-inner{
+  max-width:var(--max);margin:0 auto;padding:14px 20px;
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+}
+.site-name{font-weight:700;color:var(--heading);font-size:1.05rem}
+.site-name:hover{text-decoration:none;color:var(--accent)}
+.nav-toggle{
+  display:none;margin-left:auto;background:none;border:1px solid var(--border);
+  border-radius:6px;padding:5px 11px;font-size:1rem;color:var(--muted);cursor:pointer;
+}
+#site-nav{margin-left:auto}
+#site-nav ul{list-style:none;display:flex;gap:18px;margin:0;padding:0;flex-wrap:wrap}
+#site-nav a{font-size:.92rem;color:var(--muted)}
+#site-nav a:hover{color:var(--heading);text-decoration:none}
+#site-nav a.active{color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:2px}
+
+/* Layout ----------------------------------------------------------- */
+.wrapper{
+  max-width:var(--max);margin:0 auto;padding:34px 20px 60px;
+  display:grid;grid-template-columns:240px minmax(0,1fr);gap:52px;
+}
+.sidebar{font-size:.95rem}
+.sidebar img.avatar{width:100%;max-width:180px;border-radius:8px;display:block;margin-bottom:12px}
+.sidebar .name{font-weight:700;color:var(--heading);font-size:1.05rem}
+.sidebar .role{color:var(--muted);margin-bottom:6px}
+.sidebar .follow-label{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:14px 0 6px}
+.sidebar ul{list-style:none;margin:0;padding:0}
+.sidebar li{margin:4px 0}
+
+/* Main content ------------------------------------------------------ */
+.subtitle{color:var(--muted);font-size:1.05rem;margin:-.2em 0 1.2em}
+.news{
+  background:var(--bg-soft);border-left:3px solid var(--accent);
+  padding:12px 16px;border-radius:0 6px 6px 0;margin:0 0 1.6rem;font-size:.95rem;
+}
+.item{margin-bottom:1.5rem}
+.item h3{margin-top:0}
+.item .meta{color:var(--muted);font-size:.88rem;margin:0}
+.item p{margin:.35rem 0}
+.tags{color:var(--muted);font-size:.86rem}
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.95rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:top}
+th{color:var(--heading);font-weight:600;border-bottom:2px solid var(--border)}
+.btn{
+  display:inline-block;border:1px solid var(--border);border-radius:6px;
+  padding:7px 14px;color:var(--text);font-size:.92rem;margin:0 8px 8px 0;
+}
+.btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+ul.plain{padding-left:1.2rem;margin:0 0 1rem}
+
+/* Footer ------------------------------------------------------------ */
+footer{border-top:1px solid var(--border);color:var(--muted);font-size:.85rem}
+.footer-inner{
+  max-width:var(--max);margin:0 auto;padding:18px 20px;
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+}
+
+/* Mobile ------------------------------------------------------------ */
+@media (max-width:820px){
+  .wrapper{grid-template-columns:1fr;gap:28px;padding-top:24px}
+  .sidebar{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+  .sidebar img.avatar{width:96px;margin:0}
+  .sidebar .follow-label{margin-top:8px}
+  .nav-toggle{display:inline-block}
+  #site-nav{display:none;width:100%}
+  #site-nav.open{display:block}
+  #site-nav ul{flex-direction:column;gap:10px;padding:8px 0 4px}
+}

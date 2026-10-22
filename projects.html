@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects · Youssef Alaa</title>
+  <meta name="description" content="Projects by Youssef Alaa Abdelrady — computer vision, RAG/LLM systems, predictive maintenance, and embedded IoT.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg">
+  <script src="nav.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="site-name" href="index.html">Youssef Alaa</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+      <nav id="site-nav" aria-label="Main navigation"></nav>
+    </div>
+  </header>
+
+  <div class="wrapper">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main>
+      <!-- To add a project, copy one .item block and edit the text. -->
+      <h1>Projects</h1>
+      <p>Selected engineering projects. All details and source code are in the linked repositories.</p>
+
+      <div class="item">
+        <h3><a href="https://github.com/Youssef-Al-eng/Smart-Cable-Inspection-System-ElSewedy-Defect-Detection">AI Cable Defect Detection System — Elsewedy Electric</a></h3>
+        <p class="meta">Computer Vision · Real-Time · Industrial AI · Academic project, The Knowledge Hub – Coventry University (2026)</p>
+        <p>
+          A 5-stage real-time inspection pipeline for cable manufacturing lines: Intel RealSense
+          D435i synchronized RGB+depth capture (60 FPS), custom-trained YOLOv8 detection of three
+          defect classes, SSIM-based frame deduplication, 3D surface analysis, and an operator
+          review workflow. Training used K-fold validation, class-aware augmentation, and
+          anti-bias analysis. Documented results: ~90–95% detection accuracy in project
+          evaluation, ~60% reduction in manual inspection, ~40% faster response.
+        </p>
+        <p class="tags">Python · Ultralytics YOLOv8 · OpenCV · Intel RealSense</p>
+      </div>
+
+      <div class="item">
+        <h3><a href="https://github.com/Youssef-Al-eng/Banking-Rag-Agent">FinSight — Banking Document &amp; Chart Q&amp;A Agent</a></h3>
+        <p class="meta">RAG · Vision LLM · FastAPI</p>
+        <p>
+          A FastAPI backend and web frontend that ingests PDF, DOCX, XLSX/CSV, and TXT; extracts
+          page text and every embedded chart in reading order (PyMuPDF); sends each chart to a
+          Groq vision model that returns exact <code>Category: value</code> data points; indexes
+          three record types with <code>all-MiniLM-L6-v2</code> embeddings in persistent ChromaDB;
+          keeps multi-turn memory in SQLite; and exports branded Word / PDF / PowerPoint deliverables.
+        </p>
+        <p class="tags">Python · FastAPI · Groq (LLM + vision) · ChromaDB · sentence-transformers · SQLite</p>
+      </div>
+
+      <div class="item">
+        <h3><a href="https://github.com/Youssef-Al-eng/AI-Physio-Shoulder-CDS">AI Physio — Shoulder Clinical Decision Support</a></h3>
+        <p class="meta">Healthcare AI · Multilingual RAG · Docker</p>
+        <p>
+          A multilingual RAG assistant (English &amp; Egyptian Arabic) covering six shoulder
+          conditions — multilingual sentence-transformer embeddings, FAISS search, and a LangGraph
+          retrieval node — with distance-based confidence scoring, red-flag clinical alerts,
+          three-phase protocols, and condition-specific exercise programs. Shipped with a
+          production Docker setup (multi-stage build, health checks, non-root user).
+        </p>
+        <p class="tags">Python · LangGraph · FAISS · sentence-transformers · Streamlit · Docker</p>
+      </div>
+
+      <div class="item">
+        <h3><a href="https://github.com/Youssef-Al-eng/Schindler-AI-Maintenance-Intelligence-Platform">Predictive Maintenance Intelligence Platform — Schindler</a></h3>
+        <p class="meta">Predictive Maintenance · Ensemble ML</p>
+        <p>
+          A full-stack web app that predicts elevator maintenance needs with a soft-voting
+          ensemble of four ML/DL models trained on 23,617 real inspection records — single-unit
+          diagnostics from technician checklists, bulk fleet analysis, role-based access,
+          PDF/Excel reporting, and an in-app assistant chatbot.
+        </p>
+        <p class="tags">Python · TensorFlow · scikit-learn · Streamlit</p>
+      </div>
+
+      <div class="item">
+        <h3><a href="https://github.com/Youssef-Al-eng/Laptop-recommendation-system">AI-Powered Laptop Recommendation System</a></h3>
+        <p class="meta">RAG · Agentic AI · Recommendation · <a href="https://youtu.be/Rl3DawK-n4c">Demo video</a></p>
+        <p>
+          A full-stack recommendation engine: Amazon data scraping, spec parsing into a structured
+          products database, RAG retrieval over technical specs (FAISS), and Llama 3.3 agent
+          orchestration for context-aware conversational recommendations in Streamlit.
+        </p>
+        <p class="tags">Python · LangChain · FAISS · Llama 3.3 · Streamlit</p>
+      </div>
+
+      <div class="item">
+        <h3><a href="https://github.com/Youssef-Al-eng/Smart-Cable-Drum-Monitoring-System">Smart Cable Drum Monitoring — Embedded IoT</a></h3>
+        <p class="meta">IoT · ESP32 · Edge Sensing</p>
+        <p>
+          An ESP32 system written in native C that fuses MPU6050, LM35, and GPS readings to track
+          cable-drum consumption, temperature, and location in real time — pushing to Firebase and
+          visualizing everything in a Flask dashboard with alerting thresholds.
+        </p>
+        <p class="tags">C/C++ · ESP32 · I2C/UART · Firebase · Flask</p>
+      </div>
+
+      <h2>More projects</h2>
+      <table>
+        <thead><tr><th>Project</th><th>What it is</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://github.com/Youssef-Al-eng/urbanmind-ai">UrbanMind AI</a></td><td>Full-stack smart-city platform: citizen portal + government dashboard, RAG over city documents (Qdrant), YOLOv8 incident detection, LangGraph sub-agents, FastAPI, PostgreSQL/Redis/Kafka.</td></tr>
+          <tr><td><a href="https://github.com/Youssef-Al-eng/ColoR_book_web">Coloring Book AI Director (web)</a></td><td>FastAPI + React app that turns a child's photo into a personalized print-ready coloring book PDF via an LLM + image-generation pipeline.</td></tr>
+          <tr><td><a href="https://github.com/Youssef-Al-eng/LLMOps-Control-Plane">LLMOps Control Plane</a></td><td>LLM routing, orchestration, observability, and multi-model optimization: comparison dashboard, intelligent router, caching, fallbacks, A/B testing.</td></tr>
+          <tr><td><a href="https://github.com/Youssef-Al-eng/NexusAI">NexusAI</a></td><td>AI gateway/middleware dashboard: fallback routing, rate limiting, response caching, cost tracking, and live telemetry.</td></tr>
+          <tr><td><a href="https://github.com/Youssef-Al-eng/cognitive-pipelines">Cognitive Pipelines</a></td><td>ReAct search agent, multi-agent code-review pipeline, and autonomous research agent (Groq, LangChain, LangGraph, Streamlit).</td></tr>
+          <tr><td><a href="https://github.com/Youssef-Al-eng/CV-Match">ResumeIQ (CV-Match)</a></td><td>Resume parsing and ranking against job descriptions: match scoring, ATS score, skill-gap detection.</td></tr>
+          <tr><td><a href="https://github.com/Youssef-Al-eng/neural-network-from-scratch">Neural Network From Scratch</a></td><td>Full neural network in pure NumPy — backprop, BatchNorm, Dropout, Adam — trained on MNIST (&gt;95% test accuracy) with visualizations.</td></tr>
+          <tr><td><a href="https://github.com/Youssef-Al-eng/etl-embedding-pipeline">ETL Embedding Pipeline</a></td><td>Production-grade CSV → cleaning → chunking → embeddings pipeline with async batching, checkpoint/resume, and retries.</td></tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+
+  <footer id="footer"></footer>
+</body>
+</html>
