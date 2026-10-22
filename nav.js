@@ -50,6 +50,20 @@
   if (year) year.textContent = String(new Date().getFullYear());
 
   if ("IntersectionObserver" in window) {
+    var skillCards = Array.prototype.slice.call(document.querySelectorAll(".skills-card"));
+    if (skillCards.length && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      skillCards.forEach(function (card) { card.classList.add("reveal"); });
+      document.documentElement.classList.add("reveal-ready");
+      var revealObserver = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -35px 0px" });
+      skillCards.forEach(function (card) { revealObserver.observe(card); });
+    }
+
     var sections = Array.prototype.slice.call(document.querySelectorAll("main section[id]"));
     var links = Array.prototype.slice.call(document.querySelectorAll(".site-nav a[href^='#']"));
     var observer = new IntersectionObserver(function (entries) {

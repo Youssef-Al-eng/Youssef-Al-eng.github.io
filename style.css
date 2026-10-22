@@ -5,3 +5,20 @@
 @media(max-width:760px){.nav-toggle{display:grid;gap:5px;border:0;background:none;padding:10px}.nav-toggle span{display:block;width:22px;height:1px;background:var(--ink)}.site-nav{display:none;position:absolute;top:75px;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--line);padding:1rem 18px 1.4rem;align-items:stretch;gap:.25rem;flex-direction:column}.site-nav.is-open{display:flex}.site-nav a{padding:.6rem;min-height:44px;display:flex;align-items:center}}
 @media (max-width:600px){html{scroll-padding-top:72px}.header-inner,.section-shell,.footer-inner{width:calc(100% - 36px)}.header-inner{height:68px}.wordmark{font-size:.88rem}.nav-toggle{display:grid;gap:5px;border:0;background:none;padding:10px}.nav-toggle span{display:block;width:22px;height:1px;background:var(--ink)}.site-nav{display:none;position:absolute;top:67px;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--line);padding:1rem 18px 1.4rem;align-items:stretch;gap:.25rem;flex-direction:column}.site-nav.is-open{display:flex}.site-nav a{padding:.6rem;min-height:44px;display:flex;align-items:center}.hero{display:block;min-height:0;padding-block:58px 45px}.hero-copy{max-width:760px}.motion-code{right:0;top:15%;font-size:.66rem}.systems-diagram{display:none}.visual-caption{bottom:0}.hero-index{position:static;margin-top:1.5rem}.hero h1{font-size:clamp(3rem,14vw,4rem)}.hero-lede{font-size:1rem}.section-block{padding-block:68px}.section-heading h2,.contact-copy h2{font-size:2.5rem}.section-heading-row{display:block}.text-link{display:inline-block;margin:0}.skills-grid,.project-grid,.applied-grid{grid-template-columns:1fr}.applied-card,.project-card{min-height:0!important;grid-column:auto!important}.timeline-row{grid-template-columns:1fr;gap:.35rem;padding:1rem .1rem}.education-panel,.contact-section{grid-template-columns:1fr;gap:1.25rem}.education-panel{padding:1.3rem}.contact-section{padding-block:70px}.deep-dive-list summary{grid-template-columns:30px 1fr;gap:.6rem}.summary-domain{grid-column:2}.deep-dive-list details p{margin-left:38px}.footer-inner{padding-block:1rem;flex-wrap:wrap}.footer-inner>span{font-size:.68rem}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+/* Small, nonessential motion for the opening and skills cards. */
+.js .hero-copy{animation:hero-enter .65s cubic-bezier(.2,.7,.2,1) both}
+.skills-card{position:relative;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.skills-card::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+.skills-card:hover,.skills-card:focus-within{border-color:#91a4b8}
+.skills-card:hover::before,.skills-card:focus-within::before{transform:scaleX(1)}
+.js.reveal-ready .skills-card.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .25s ease,border-color .25s ease}
+.js.reveal-ready .skills-card.reveal.is-visible{opacity:1;transform:translateY(0)}
+.js.reveal-ready .skills-card.reveal.is-visible:hover,.js.reveal-ready .skills-card.reveal.is-visible:focus-within{transform:translateY(-4px);box-shadow:0 15px 38px #26332c0d}
+.js.reveal-ready .skills-card.reveal:nth-child(2){transition-delay:.06s}
+.js.reveal-ready .skills-card.reveal:nth-child(3){transition-delay:.12s}
+.js.reveal-ready .skills-card.reveal:nth-child(4){transition-delay:.18s}
+.js.reveal-ready .skills-card.reveal:nth-child(5){transition-delay:.24s}
+.js.reveal-ready .skills-card.reveal:nth-child(6){transition-delay:.3s}
+@keyframes hero-enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.js .hero-copy{animation:none}.js.reveal-ready .skills-card.reveal{opacity:1;transform:none;transition:none}}
