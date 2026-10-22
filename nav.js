@@ -1,57 +1,66 @@
-/* ------------------------------------------------------------------
-   Site configuration — the single place to customize the site.
-   Reorder NAV items, edit links, or swap the avatar here.
-------------------------------------------------------------------- */
-const SITE = {
-  name: "Youssef Alaa",
-  fullName: "Youssef Alaa Abdelrady",
-  role: "Applied AI Engineer · Cairo, Egypt",
-  email: "youssefalaa.1356@gmail.com",
-  linkedin: "https://www.linkedin.com/in/youssef-alaa-334581406/",
-  github: "https://github.com/Youssef-Al-eng",
-  avatar: "https://avatars.githubusercontent.com/Youssef-Al-eng?size=320"
-};
+(function () {
+  "use strict";
+  document.documentElement.classList.remove("no-js");
+  document.documentElement.classList.add("js");
 
-const NAV = [
-  { title: "Home",       url: "index.html" },
-  { title: "About",      url: "about.html" },
-  { title: "Projects",   url: "projects.html" },
-  { title: "Research",   url: "research.html" },
-  { title: "Experience", url: "experience.html" },
-  { title: "Education",  url: "education.html" },
-  { title: "Contact",    url: "contact.html" }
-];
-
-(function build() {
-  const page = location.pathname.split("/").pop() || "index.html";
-
-  const nav = document.getElementById("site-nav");
-  if (nav) {
-    nav.innerHTML = "<ul>" + NAV.map(function (n) {
-      var active = n.url === page ? ' class="active"' : "";
-      return '<li><a href="' + n.url + '"' + active + ">" + n.title + "</a></li>";
-    }).join("") + "</ul>";
+  var toggle = document.querySelector(".nav-toggle");
+  var nav = document.getElementById("site-nav");
+  function closeMenu() {
+    if (!toggle || !nav) return;
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-label", "Open navigation");
+    nav.classList.remove("is-open");
+  }
+  if (toggle && nav) {
+    toggle.addEventListener("click", function () {
+      var expanded = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", String(!expanded));
+      toggle.setAttribute("aria-label", expanded ? "Open navigation" : "Close navigation");
+      nav.classList.toggle("is-open", !expanded);
+    });
+    nav.addEventListener("click", function (event) {
+      if (event.target.closest("a")) closeMenu();
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && nav.classList.contains("is-open")) {
+        closeMenu(); toggle.focus();
+      }
+    });
   }
 
-  var sb = document.getElementById("sidebar");
-  if (sb) {
-    sb.innerHTML =
-      '<img class="avatar" src="' + SITE.avatar + '" alt="Photo of ' + SITE.fullName + '">' +
-      '<div class="name">' + SITE.fullName + "</div>" +
-      '<div class="role">' + SITE.role + "</div>" +
-      '<div class="follow-label">Follow</div><ul>' +
-      '<li><a href="mailto:' + SITE.email + '">Email</a></li>' +
-      '<li><a href="' + SITE.linkedin + '" target="_blank" rel="noopener">LinkedIn</a></li>' +
-      '<li><a href="' + SITE.github + '" target="_blank" rel="noopener">GitHub</a></li>' +
-      "</ul>";
-  }
+  var filters = Array.prototype.slice.call(document.querySelectorAll("[data-filter]"));
+  var cards = Array.prototype.slice.call(document.querySelectorAll(".project-card[data-category]"));
+  var status = document.querySelector(".filter-status");
+  filters.forEach(function (button) {
+    button.addEventListener("click", function () {
+      var value = button.getAttribute("data-filter");
+      var visible = 0;
+      filters.forEach(function (item) { item.setAttribute("aria-pressed", String(item === button)); });
+      cards.forEach(function (card) {
+        var categories = (card.getAttribute("data-category") || "").split(/\s+/);
+        var show = value === "all" || categories.indexOf(value) !== -1;
+        card.hidden = !show;
+        if (show) visible += 1;
+      });
+      if (status) status.textContent = value === "all" ? "Showing all " + visible + " research projects." : "Showing " + visible + " " + button.textContent.trim() + " projects.";
+    });
+  });
 
-  var f = document.getElementById("footer");
-  if (f) {
-    f.innerHTML =
-      '<div class="footer-inner">' +
-      "<div>© " + new Date().getFullYear() + " " + SITE.fullName + "</div>" +
-      '<div>Follow: <a href="' + SITE.github + '">GitHub</a> · ' +
-      '<a href="' + SITE.linkedin + '" target="_blank" rel="noopener">LinkedIn</a></div></div>';
+  var year = document.getElementById("current-year");
+  if (year) year.textContent = String(new Date().getFullYear());
+
+  if ("IntersectionObserver" in window) {
+    var sections = Array.prototype.slice.call(document.querySelectorAll("main section[id]"));
+    var links = Array.prototype.slice.call(document.querySelectorAll(".site-nav a[href^='#']"));
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        links.forEach(function (link) {
+          if (link.getAttribute("href") === "#" + entry.target.id) link.setAttribute("aria-current", "location");
+          else link.removeAttribute("aria-current");
+        });
+      });
+    }, { rootMargin: "-25% 0px -65% 0px" });
+    sections.forEach(function (section) { observer.observe(section); });
   }
 })();
